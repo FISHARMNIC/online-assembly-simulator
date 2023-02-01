@@ -12,11 +12,13 @@
 }
 
 #wasm_memory {
+    background-color: white;
     border: 1px solid black;
     width: 500px;
     height: 500px;
     white-space: pre-wrap;
     overflow-y: scroll;
+    font-family: monospace;
 }
 
 #fontspec {
@@ -38,4 +40,14 @@
     top: 0;
     left: 0;
     z-index: 10;
+}
+
+body {
+    max-width: 500px;margin: auto;
+    background-color: antiquewhite;
+}
+
+#highlight {
+    background-color: white;
+    
 }

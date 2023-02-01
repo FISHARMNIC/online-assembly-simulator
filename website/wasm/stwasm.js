@@ -3,6 +3,7 @@ Library written for simple C-JS Interaction
 Nicolas Quijano 2023
 */
 
+// to do memory highlighting compare what chnaged new memory vs old memory
 window.WASM_SOURCE = 'wasm/main.wasm';
 window.MAX_STR_SIZE = 1000;
 window.wasm_global = 0;

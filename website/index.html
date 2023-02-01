@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,23 +8,29 @@
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <h1> Assembly Interpreter</h1>
   <p id="linenum"></p>
   <p id="runStatus">Click Step to start</p>
   <div class="outer">
-    <div class="iem"> 
+    <div class="iem">
       <div id="highlight" class="te"></div>
-      <button onclick="nextLine()">Step</button>
-      <button onclick="reset()">Reset</button>
     </div>
-    <div class="item">  
-      <div contenteditable="true" id="code" class="te" oninput="highlight()" spellcheck="false"></div>
+    <div class="item">
+      <div contenteditable="true" id="code" class="te" oninput="reset()" spellcheck="false"></div>
     </div>
   </div>
-  <br><br><br><br><br><br><br><br>
-  <pre id="wasm_memory">
+  
+  <br><br><br><br><br><br><br>
+  <button onclick="nextLine()">Step</button>
+  <button onclick="reset()">Reset</button>
+  <button onclick="run_all()">Run</button>
+  <button onclick="stop_all()">Stop</button>
+  <div id="wasm_memory"></div>
   <script src="site.js"></script>
   <script src="memory.js"></script>
   <script src="wasm/stwasm.js"></script>
 </body>
+
 </html>

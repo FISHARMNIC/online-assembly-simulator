@@ -1,4 +1,7 @@
 window.linenum = 0;
+window.oldMem = -1;
+
+var runInterval;
 var formattedcode;
 
 document.getElementById("code").innerText =
@@ -17,6 +20,8 @@ function reset() {
     linenum = 0;
     formattedcode = parse(document.getElementById("code").innerText);
     highlight()
+    document.getElementById("runStatus").innerText = "Click Step to start"
+    //oldMem = Array.from(memory.slice(0))
 }
 
 
@@ -34,6 +39,16 @@ function nextLine() {
     }
 }
 
+function run_all()
+{
+    runInvterval = setInterval(() => nextLine(), 500);
+}
+
+function stop_all()
+{
+    clearInterval(runInterval);
+}
+
 function highlight() {
     var hgcol = "lightblue"
     var hg = document.getElementById("highlight").innerHTML
@@ -47,6 +62,7 @@ function highlight() {
         hg = document.getElementById("highlight").innerHTML
         document.getElementById("highlight").innerHTML = replace_nth(hg, "<br>", `</span><br>`, linenum + 1)
     }
+    //document.getElementById("highlight").innerHTML = document.getElementById("highlight").innerHTML.replace(/mov/g, `<span style="text-color:red;">mov</span>`)
     updateMemory();
 }
 function replace_nth(s, f, r, n) {
