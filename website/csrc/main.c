@@ -1,16 +1,16 @@
-#include "wasm.h"
-
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include <inttypes.h>
 
+#include "wasm.h"
 #include "header.h"
 
 asm_memory_t memory;
 asm_instance_t instance;
 char js_string[100];
 char *js_string_pointer;
+
 void asm_init()
 {
     memory = new_asm_memory(100);
@@ -29,5 +29,6 @@ int asm_run()
 {
     int out = asm_instance_run_single(&instance, js_string_pointer);
     js_return_value(out);
+    js_pass_registers(instance.registers.a.b32, instance.registers.b.b32, instance.registers.c.b32, instance.registers.d.b32);
     return 0;
 }

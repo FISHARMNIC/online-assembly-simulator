@@ -21,16 +21,90 @@
       <div contenteditable="true" id="code" class="te" oninput="reset()" spellcheck="false"></div>
     </div>
   </div>
-  
-  <br><br><br><br><br><br><br>
+
+  <br><br><br><br><br><br>
   <button onclick="nextLine()">Step</button>
   <button onclick="reset()">Reset</button>
   <button onclick="run_all()">Run</button>
   <button onclick="stop_all()">Stop</button>
+  <br><br>
+  
+  <div class="rname">a</div>
+  <div class="rname">b</div>
+  <div class="rname">c</div>
+  <div class="rname">d</div>
+
+  <div id="r1" class="register">0</div>
+  <div id="r2" class="register">0</div>
+  <div id="r3" class="register">0</div>
+  <div id="r4" class="register">0</div>
+
+  <br><br>
+  
+
+    <div class="rsname">32</div>
+    <div class="rsname">16</div>
+    <div class="rsname">8h</div>
+    <div class="rsname">8l</div>
+
+    <div class="rsname">32</div>
+    <div class="rsname">16</div>
+    <div class="rsname">8h</div>
+    <div class="rsname">8l</div>
+
+    <div class="rsname">32</div>
+    <div class="rsname">16</div>
+    <div class="rsname">8h</div>
+    <div class="rsname">8l</div>
+
+    <div class="rsname">32</div>
+    <div class="rsname">16</div>
+    <div class="rsname">8h</div>
+    <div class="rsname">8l</div>
+
+  <div>
+    <div id="r1_32" class="rsplit">0</div>
+    <div id="r1_16" class="rsplit">0</div>
+    <div id="r1_8h" class="rsplit">0</div>
+    <div id="r1_8l" class="rsplit">0</div>
+  </div>
+  <div>
+    <div id="r2_32" class="rsplit">0</div>
+    <div id="r2_16" class="rsplit">0</div>
+    <div id="r2_8h" class="rsplit">0</div>
+    <div id="r2_8l" class="rsplit">0</div>
+  </div>
+  <div>
+    <div id="r3_32" class="rsplit">0</div>
+    <div id="r3_16" class="rsplit">0</div>
+    <div id="r3_8h" class="rsplit">0</div>
+    <div id="r3_8l" class="rsplit">0</div>
+  </div>
+  <div>
+    <div id="r4_32" class="rsplit">0</div>
+    <div id="r4_16" class="rsplit">0</div>
+    <div id="r4_8h" class="rsplit">0</div>
+    <div id="r4_8l" class="rsplit">0</div>
+  </div>
+
+  <br><br>
   <div id="wasm_memory"></div>
-  <script src="site.js"></script>
-  <script src="memory.js"></script>
-  <script src="wasm/stwasm.js"></script>
+  <br>
+  <h3>How it Works</h3>
+  <p>I wrote the assembly interpreter itself in C <a
+      href="https://github.com/FISHARMNIC/online-assembly-simulator">(source code)</a>.
+    This was so that I would be able to handle the pointer access and memory sizes of assembly directly, instead of
+    virtualizing things like register sizes and overflows.
+    It was then compiled to standalone web assembly using emscripten. From there, I built a simple javascript library
+    for handling interactions between JS and WASM.
+    That allowed me to do things like read and write C strings from JS, and run functions from the other language. From
+    there, I pass the address of the C memory buffer used by the interpreter
+    and display that in the memory section
+
+  <p>
+    <script src="site.js"></script>
+    <script src="memory.js"></script>
+    <script src="wasm/stwasm.js"></script>
 </body>
 
 </html>

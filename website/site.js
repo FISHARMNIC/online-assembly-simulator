@@ -41,7 +41,7 @@ function nextLine() {
 
 function run_all()
 {
-    runInvterval = setInterval(() => nextLine(), 500);
+    runInvterval = setInterval(nextLine, 500);
 }
 
 function stop_all()

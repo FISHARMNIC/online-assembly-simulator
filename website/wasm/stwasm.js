@@ -18,7 +18,29 @@ var env = {
     js_return_value,
     console: (str) => console.log(read_wasm_string(str)),
     console_char: (ch) => console.log(ch),
-    console_int: (i) => console.log(i)
+    console_int: (i) => console.log(i),
+    js_pass_registers
+}
+
+function js_pass_registers(a, b, c, d) {
+    document.getElementById("r1").innerText = a;
+    document.getElementById("r2").innerText = b;
+    document.getElementById("r3").innerText = c;
+    document.getElementById("r4").innerText = d;
+
+    var arg = Object.values(arguments);
+    
+    var i8l = new Int8Array([...arg])
+    var i8h = new Int8Array([...arg.map(x => x >> 8)])
+    var i16 = new Int16Array([...arg])
+    for (var i = 1; i <= 4; i++) {
+        document.getElementById(`r${i}_32`).innerText = arg[i - 1];
+        document.getElementById(`r${i}_16`).innerText = i16[i - 1];
+        document.getElementById(`r${i}_8h`).innerText = i8h[i - 1];
+        document.getElementById(`r${i}_8l`).innerText = i8l[i - 1];
+    }
+
+    console.log(a, b, c, d)
 }
 
 function wasm_write_memory(address, data) {
@@ -43,13 +65,11 @@ function read_wasm_string(base) {
     return new TextDecoder().decode(strBuf).slice(0, i);
 }
 
-function wasm_read_memory(base)
-{
+function wasm_read_memory(base) {
     return (new Uint8Array(memory.buffer, base, MAX_STR_SIZE))
 }
 
-function console_read_memory()
-{
+function console_read_memory() {
     console.log(wasm_read_memory(virtual_address))
 }
 
@@ -72,7 +92,7 @@ function wasm_init(url, imp) {
 
 window.runsem = false;
 async function main() {
-    wasm_init(String(WASM_SOURCE), {env})
+    wasm_init(String(WASM_SOURCE), { env })
         .then(m => {
             wasm_global = m;
             memory = m.memory;

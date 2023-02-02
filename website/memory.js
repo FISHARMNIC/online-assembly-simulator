@@ -26,7 +26,7 @@ function js_pass_virtual_memory(ptr) {
 
 function updateMemory() {
     var formattedmem = Array.from(wasm_read_memory(virtual_address).slice(0));
-    var col = "lightblue";
+    var col = "orange";
     if (oldMem != -1) {
         formattedmem = formattedmem.map((x, i) => {
             return (x == oldMem[i]) ? x : `<span style="background-color:${col};">${x}</span>`

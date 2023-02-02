@@ -1,14 +1,12 @@
 .te {
-    -moz-appearance: textfield-multiline;
-    -webkit-appearance: textarea;
-    border: 1px solid gray;
+    border: 1px solid black;
     font: medium -moz-fixed;
     font: -webkit-small-control;
     height: 200px;
     overflow: auto;
     padding: 2px;
-    resize: both;
-    width: 500px;
+    resize: none;
+    width: 495.5px;
 }
 
 #wasm_memory {
@@ -43,11 +41,53 @@
 }
 
 body {
-    max-width: 500px;margin: auto;
+    max-width: 530px;
+    margin: auto;
     background-color: antiquewhite;
 }
 
 #highlight {
     background-color: white;
-    
+
+}
+
+.register {
+    background-color: white;
+    text-align: center;
+    float: left;
+    width: 123.5px;
+    border: 0.1px solid #000000;
+    border-top: none;
+    font-family: monospace;
+}
+
+.rname {
+    background-color: white;
+    text-align: center;
+    float: left;
+    width: 123.5px;
+    border: 0.1px solid #000000;
+    border-bottom: none;
+    padding-bottom: 0%;
+    font-family: monospace;
+}
+
+.rsplit {
+    background-color: white;
+    text-align: center;
+    float: left;
+    width: 29.4px;
+    border: 0.1px solid #000000;
+    border-top: none;
+    font-family: monospace;
+}
+
+.rsname {
+    background-color: white;
+    text-align: center;
+    float: left;
+    width: 29.4px;
+    border: 0.1px solid #000000;
+    border-bottom: none;
+    font-family: monospace;
 }

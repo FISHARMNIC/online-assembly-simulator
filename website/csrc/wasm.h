@@ -5,3 +5,5 @@ extern char returnAddr;
 extern void console(char* str);
 extern void console_char(char ch);
 extern void console_int(int in);
+
+extern void js_pass_registers(int32_t a, int32_t b, int32_t c, int32_t d);

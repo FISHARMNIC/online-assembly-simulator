@@ -5,6 +5,13 @@ typedef struct
     uint8_t overflow : 1;
 } flags_t;
 
+typedef union
+{
+    uint8_t b8[2];
+    uint16_t b16;
+    uint32_t b32;
+} asm_register_t;
+
 typedef struct
 {
     uint16_t size;
@@ -12,13 +19,6 @@ typedef struct
     uint8_t *dataoffset;
     flags_t flags;
 } asm_memory_t;
-
-typedef union
-{
-    uint8_t b8[2];
-    uint16_t b16;
-    uint32_t b32;
-} asm_register_t;
 
 typedef struct
 {
