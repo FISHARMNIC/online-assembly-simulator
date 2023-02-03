@@ -24,6 +24,35 @@ function js_pass_virtual_memory(ptr) {
     virtual_address = ptr;
 }
 
+function js_pass_registers(a, b, c, d) {
+    document.getElementById("r1").innerText = a;
+    document.getElementById("r2").innerText = b;
+    document.getElementById("r3").innerText = c;
+    document.getElementById("r4").innerText = d;
+
+    var arg = Object.values(arguments)
+    var showunsigned = document.getElementById("signed").checked
+    var convertUC = x => showunsigned ? x : (x < 0 ? 256 + x : x)
+    var convertUS = x => showunsigned ? x : (x < 0 ? 65536 + x : x)
+    var convertUL = x => showunsigned ? x : (x < 0 ? 4294967296 + x : x)
+
+    var i8l = Array.from(new Int8Array([...arg]))
+        .map(convertUC)
+    var i8h = Array.from(new Int8Array([...arg.map(x => x >> 8)]))
+        .map(convertUS)
+    var i16 = Array.from(new Int16Array([...arg]))
+        .map(convertUL)
+
+    for (var i = 1; i <= 4; i++) {
+        document.getElementById(`r${i}_32`).innerText = arg[i - 1];
+        document.getElementById(`r${i}_16`).innerText = i16[i - 1];
+        document.getElementById(`r${i}_8h`).innerText = i8h[i - 1];
+        document.getElementById(`r${i}_8l`).innerText = i8l[i - 1];
+    }
+
+    //console.log(a, b, c, d)
+}
+
 function updateMemory() {
     var formattedmem = Array.from(wasm_read_memory(virtual_address).slice(0));
     var col = "orange";
@@ -33,13 +62,9 @@ function updateMemory() {
         })
     }
     //console.log(`<span style="background-color:${col};">${123}</span>`.length - 40 - col.length)
-    formattedmem = formattedmem.slice(0).map(x => x + " ".repeat(3 - (String(x).length > 3 ? String(x).length - 40 - col.length: String(x).length))).join(" ")
+    formattedmem = formattedmem.slice(0).map(x => x + " ".repeat(3 - (String(x).length > 3 ? String(x).length - 40 - col.length : String(x).length))).join(" ")
     //console.log(formattedmem)
     document.getElementById("wasm_memory").innerHTML = formattedmem;
-}
-
-function memory_highlight() {
-
 }
 
 function memory_read_size(size, index) {

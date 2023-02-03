@@ -5,7 +5,7 @@ var runInterval;
 var formattedcode;
 
 document.getElementById("code").innerText =
-    `mov %al, 0
+`mov %al, 0
 inc %al
 mov [%al], %al
 cmp %al, 10

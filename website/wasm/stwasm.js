@@ -22,27 +22,6 @@ var env = {
     js_pass_registers
 }
 
-function js_pass_registers(a, b, c, d) {
-    document.getElementById("r1").innerText = a;
-    document.getElementById("r2").innerText = b;
-    document.getElementById("r3").innerText = c;
-    document.getElementById("r4").innerText = d;
-
-    var arg = Object.values(arguments);
-    
-    var i8l = new Int8Array([...arg])
-    var i8h = new Int8Array([...arg.map(x => x >> 8)])
-    var i16 = new Int16Array([...arg])
-    for (var i = 1; i <= 4; i++) {
-        document.getElementById(`r${i}_32`).innerText = arg[i - 1];
-        document.getElementById(`r${i}_16`).innerText = i16[i - 1];
-        document.getElementById(`r${i}_8h`).innerText = i8h[i - 1];
-        document.getElementById(`r${i}_8l`).innerText = i8l[i - 1];
-    }
-
-    console.log(a, b, c, d)
-}
-
 function wasm_write_memory(address, data) {
     var mem = new Uint8Array(memory.buffer, address, MAX_STR_SIZE)
     mem.set(new Uint8Array(data))

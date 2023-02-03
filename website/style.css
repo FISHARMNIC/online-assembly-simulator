@@ -1,7 +1,7 @@
 .te {
     border: 1px solid black;
-    font: medium -moz-fixed;
-    font: -webkit-small-control;
+    /* font: medium -moz-fixed; */
+    /* //font: -webkit-small-control; */
     height: 200px;
     overflow: auto;
     padding: 2px;
@@ -20,7 +20,7 @@
 }
 
 #fontspec {
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
     font-size: 40px;
     font-weight: bold;
 }
@@ -44,6 +44,7 @@ body {
     max-width: 530px;
     margin: auto;
     background-color: antiquewhite;
+    font-family: monospace;
 }
 
 #highlight {
@@ -80,6 +81,7 @@ body {
     border: 0.1px solid #000000;
     border-top: none;
     font-family: monospace;
+    text-size-adjust: auto;
 }
 
 .rsname {
